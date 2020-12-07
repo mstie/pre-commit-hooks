@@ -69,7 +69,7 @@
     description: Check to ensure scenes should be committed
     entry: check-scene-folder
     language: python
-    types: [unity]
+    types: [text]
 -   id: check-symlinks
     name: Check for broken symlinks
     description: Checks for symlinks which do not point to anything.
