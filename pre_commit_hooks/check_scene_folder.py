@@ -1,32 +1,7 @@
 import argparse
-from typing import Any
-from typing import Generator
-from typing import NamedTuple
 from typing import Optional
 from typing import Sequence
 import os
-
-import ruamel.yaml
-
-yaml = ruamel.yaml.YAML(typ='safe')
-
-
-def _exhaust(gen: Generator[str, None, None]) -> None:
-    for _ in gen:
-        pass
-
-
-def _parse_unsafe(*args: Any, **kwargs: Any) -> None:
-    _exhaust(yaml.parse(*args, **kwargs))
-
-
-def _load_all(*args: Any, **kwargs: Any) -> None:
-    _exhaust(yaml.load_all(*args, **kwargs))
-
-
-class Key(NamedTuple):
-    multi: bool
-    unsafe: bool
 
 
 def main(argv: Optional[Sequence[str]] = None) -> int:
@@ -43,7 +18,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
 
             if file_extension == 'unity':
                 print(filename)
-        except ruamel.yaml.YAMLError as exc:
+        except Exception as exc:
             print(exc)
             retval = 1
     return retval
